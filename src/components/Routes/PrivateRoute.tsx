@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { ROUTES } from '../../utils/constants';
 import { useAuth } from '../../context/auth';
 
 interface PrivateRouteProps extends RouteProps {
-  component?: React.ComponentType<unknown>;
+  component?: React.ComponentType<any>;
   children?: React.ReactNode;
 }
 
@@ -16,11 +16,14 @@ export default function PrivateRoute({
   const { isAuthenticated } = useAuth();
 
   const render = (props: any) => {
+    // Remove computedMatch from props to prevent React warning
+    const { computedMatch, ...restProps } = props;
+    
     if (!isAuthenticated) {
       return <Redirect to={ROUTES.SIGNIN} />;
     } else {
       if (Component) {
-        return <Component {...props} />;
+        return <Component {...restProps} />;
       } else {
         return children;
       }

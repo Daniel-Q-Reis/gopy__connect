@@ -11,12 +11,12 @@ function App(): React.ReactElement {
   return (
     <Router>
       <AuthProvider>
-        <Switch>
-          <div className='App'>
+        <div className='App'>
+          <Switch>
             <PublicRoute path={ROUTES.SIGNIN} component={Login} exact />
             <PrivateRoute path={ROUTES.HOME} component={Home} exact />
-          </div>
-        </Switch>
+          </Switch>
+        </div>
       </AuthProvider>
     </Router>
   );

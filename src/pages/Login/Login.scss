@@ -64,6 +64,35 @@
       @include for-mobile-only {
         padding: 1.8rem;
       }
+      
+      .error {
+        color: red;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      
+      .register-link, .login-link {
+        margin-top: 1.5rem;
+        text-align: center;
+        
+        span {
+          font-size: 0.9rem;
+        }
+        
+        button {
+          text-transform: none;
+          color: $primary;
+          font-weight: 600;
+          padding: 0;
+          margin: 0;
+          min-width: auto;
+          
+          &:hover {
+            background-color: transparent;
+            text-decoration: underline;
+          }
+        }
+      }
     }
 
     .title {
@@ -84,6 +113,10 @@
         background-color: $primary-light;
         transform: translateY(-2px);
       }
+    }
+    
+    .MuiTextField-root {
+      margin-bottom: 1.5rem;
     }
   }
 }

@@ -5,7 +5,7 @@ import { useAuth } from '../../context/auth';
 
 interface PublicRouteProps extends RouteProps {
   restricted?: boolean;
-  component: React.ComponentType<unknown>;
+  component: React.ComponentType<any>;
   children?: React.ReactNode;
 }
 
@@ -18,11 +18,14 @@ export default function PublicRoute({
   const { isAuthenticated } = useAuth();
 
   const render = (props: any) => {
+    // Remove computedMatch from props to prevent React warning
+    const { computedMatch, ...restProps } = props;
+    
     if (isAuthenticated && restricted) {
       return <Redirect to={ROUTES.HOME} />;
     } else {
       if (Component) {
-        return <Component {...props} />;
+        return <Component {...restProps} />;
       } else {
         return children;
       }
